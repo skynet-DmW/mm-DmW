@@ -59,8 +59,8 @@ public class ${table.controllerName} {
     @GetMapping("v1/page")
     @ApiOperation(value = "${table.comment}分页查询", notes = "${table.comment}分页查询")
     public ResponseEntity<Result<List<${entity}>>> page(PageQuery pageQuery, BaseQuery query) {
-        IPage<${entity}> iPage = this.${entity}Service.page(pageQuery, Wrappers.lambdaQuery(new Role())
-        .orderByDesc(Role::getCreateTime));
+        IPage<${entity}> iPage = this.${entity}Service.page(pageQuery, Wrappers.lambdaQuery(new ${entity}())
+        .orderByDesc(${entity}::getCreateTime));
         return ResponseEntity.ok(Result.success(iPage.getTotal(), iPage.getRecords()));
     }
 
@@ -68,8 +68,8 @@ public class ${table.controllerName} {
     @GetMapping("v1/list")
     @ApiOperation(value = "查询所有${table.comment}", notes = "查询所有${table.comment}")
     public ResponseEntity<Result<List<${entity}>>> list() {
-        List<Role> roles = this.${entity}Service.list(Wrappers.lambdaQuery(new ${entity}()).orderByDesc(${entity}::getCreateTime));
-        return ResponseEntity.ok(Result.success(roles));
+        List<${entity}> list = this.${entity}Service.list(Wrappers.lambdaQuery(new ${entity}()).orderByDesc(${entity}::getCreateTime));
+        return ResponseEntity.ok(Result.success(list));
     }
 
 
@@ -92,7 +92,7 @@ public class ${table.controllerName} {
     @DeleteMapping("v1/delete/{id}")
     @ApiOperation(value = "根据id删除${table.comment}", notes = "根据id删除${table.comment}")
     public ResponseEntity<Result> delete(@PathVariable("id") Long id) {
-        this.${entity}Service.deleteRole(id);
+        this.${entity}Service.removeById(id);
         return ResponseEntity.ok(Result.success());
     }
 
