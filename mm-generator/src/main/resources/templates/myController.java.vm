@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
@@ -81,7 +80,7 @@ public class ${table.controllerName} {
     }
 
 
-    @PutMapping("v1/update")
+    @PatchMapping("v1/update")
     @ApiOperation(value = "根据id修改${table.comment}", notes = "根据id修改${table.comment}")
     public ResponseEntity<Result> update(@Validated @RequestBody ${entity} pojo) {
         this.${entity}Service.updateById(pojo);
