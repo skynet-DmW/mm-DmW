@@ -1,6 +1,12 @@
 package ${package.Controller};
 
+import com.qz.common.pojo.PageQuery;
+import com.qz.common.query.BaseQuery;
+import com.qz.common.pojo.Result;
+import ${package.Service}.${entity}Service;
+import ${package.Entity}.${entity};
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 #if(${restControllerStyle})
@@ -12,20 +18,21 @@ import org.springframework.stereotype.Controller;
 import ${superControllerClassPackage};
 #end
 
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 /**
  * <p>
@@ -53,13 +60,13 @@ public class ${table.controllerName} {
 #end
 
     @Autowired
-    public  ${entity}Service ${entity}Service;
+    public ${entity}Service I${entity}Service;
 
 
     @GetMapping("v1/page")
     @ApiOperation(value = "${table.comment}分页查询", notes = "${table.comment}分页查询")
     public ResponseEntity<Result<List<${entity}>>> page(PageQuery pageQuery, BaseQuery query) {
-        IPage<${entity}> iPage = this.${entity}Service.page(pageQuery, Wrappers.lambdaQuery(new ${entity}())
+        IPage<${entity}> iPage = this.I${entity}Service.page(pageQuery, Wrappers.lambdaQuery(new ${entity}())
         .orderByDesc(${entity}::getCreateTime));
         return ResponseEntity.ok(Result.success(iPage.getTotal(), iPage.getRecords()));
     }
@@ -68,7 +75,7 @@ public class ${table.controllerName} {
     @GetMapping("v1/list")
     @ApiOperation(value = "查询所有${table.comment}", notes = "查询所有${table.comment}")
     public ResponseEntity<Result<List<${entity}>>> list() {
-        List<${entity}> list = this.${entity}Service.list(Wrappers.lambdaQuery(new ${entity}()).orderByDesc(${entity}::getCreateTime));
+        List<${entity}> list = this.I${entity}Service.list(Wrappers.lambdaQuery(new ${entity}()).orderByDesc(${entity}::getCreateTime));
         return ResponseEntity.ok(Result.success(list));
     }
 
@@ -76,7 +83,7 @@ public class ${table.controllerName} {
     @PostMapping("v1/save")
     @ApiOperation(value = "保存${table.comment}", notes = "保存${table.comment}")
     public ResponseEntity<Result> save(@Validated @RequestBody ${entity} pojo) {
-        this.${entity}Service.save(pojo);
+        this.I${entity}Service.save(pojo);
         return ResponseEntity.ok(Result.success());
     }
 
@@ -84,7 +91,7 @@ public class ${table.controllerName} {
     @PatchMapping("v1/update")
     @ApiOperation(value = "根据id修改${table.comment}", notes = "根据id修改${table.comment}")
     public ResponseEntity<Result> update(@Validated @RequestBody ${entity} pojo) {
-        this.${entity}Service.updateById(pojo);
+        this.I${entity}Service.updateById(pojo);
         return ResponseEntity.ok(Result.success());
     }
 
@@ -92,7 +99,7 @@ public class ${table.controllerName} {
     @DeleteMapping("v1/delete/{id}")
     @ApiOperation(value = "根据id删除${table.comment}", notes = "根据id删除${table.comment}")
     public ResponseEntity<Result> delete(@PathVariable("id") Long id) {
-        this.${entity}Service.removeById(id);
+        this.I${entity}Service.removeById(id);
         return ResponseEntity.ok(Result.success());
     }
 
