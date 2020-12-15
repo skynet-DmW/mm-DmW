@@ -103,6 +103,7 @@ public class CodeGeneratorMM {
         // 配置模板
         TemplateConfig templateConfig = new TemplateConfig();
         templateConfig.setController("templates/myController.java");
+        templateConfig.setMapper("templates/myMapper.java");
         // 配置自定义输出模板
         //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
         // templateConfig.setEntity("templates/entity2.java");
