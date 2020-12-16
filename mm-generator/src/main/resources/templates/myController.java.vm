@@ -66,7 +66,7 @@ public class ${table.controllerName} {
     @ApiOperation(value = "${table.comment}分页查询", notes = "${table.comment}分页查询")
     public ResponseEntity<Result<List<${entity}>>> page(PageQuery pageQuery, BaseQuery query) {
         IPage<${entity}> iPage = this.${controllerMappingHyphen}Service.page(pageQuery, Wrappers.lambdaQuery(new ${entity}())
-        .orderByDesc(${entity}::getCreateTime));
+        .orderByDesc(${entity}::getUpdateTime));
         return ResponseEntity.ok(Result.success(iPage.getTotal(), iPage.getRecords()));
     }
 
@@ -74,7 +74,7 @@ public class ${table.controllerName} {
     @GetMapping("v1/list")
     @ApiOperation(value = "查询所有${table.comment}", notes = "查询所有${table.comment}")
     public ResponseEntity<Result<List<${entity}>>> list() {
-        List<${entity}> list = this.${controllerMappingHyphen}Service.list(Wrappers.lambdaQuery(new ${entity}()).orderByDesc(${entity}::getCreateTime));
+        List<${entity}> list = this.${controllerMappingHyphen}Service.list(Wrappers.lambdaQuery(new ${entity}()).orderByDesc(${entity}::getUpdateTime));
         return ResponseEntity.ok(Result.success(list));
     }
 
