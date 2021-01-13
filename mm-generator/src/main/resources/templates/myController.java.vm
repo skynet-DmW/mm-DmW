@@ -59,13 +59,13 @@ public class ${table.controllerName} {
 #end
 
     @Autowired
-    public ${entity}Service ${controllerMappingHyphen}Service;
+    public ${entity}Service ${table.entityPath}Service;
 
 
     @GetMapping("v1/page")
     @ApiOperation(value = "${table.comment}分页查询", notes = "${table.comment}分页查询")
     public ResponseEntity<Result<List<${entity}>>> page(PageQuery pageQuery, BaseQuery query) {
-        IPage<${entity}> iPage = this.${controllerMappingHyphen}Service.page(pageQuery, Wrappers.lambdaQuery(new ${entity}())
+        IPage<${entity}> iPage = this.${table.entityPath}Service.page(pageQuery, Wrappers.lambdaQuery(new ${entity}())
                 .orderByDesc(${entity}::getUpdateTime));
         return ResponseEntity.ok(Result.success(iPage.getTotal(), iPage.getRecords()));
     }
@@ -74,7 +74,7 @@ public class ${table.controllerName} {
     @GetMapping("v1/list")
     @ApiOperation(value = "查询所有${table.comment}", notes = "查询所有${table.comment}")
     public ResponseEntity<Result<List<${entity}>>> list() {
-        List<${entity}> list = this.${controllerMappingHyphen}Service.list(Wrappers.lambdaQuery(new ${entity}()).orderByDesc(${entity}::getUpdateTime));
+        List<${entity}> list = this.${table.entityPath}Service.list(Wrappers.lambdaQuery(new ${entity}()).orderByDesc(${entity}::getUpdateTime));
         return ResponseEntity.ok(Result.success(list));
     }
 
@@ -82,7 +82,7 @@ public class ${table.controllerName} {
     @PostMapping("v1/save")
     @ApiOperation(value = "保存${table.comment}", notes = "保存${table.comment}")
     public ResponseEntity<Result> save(@Validated @RequestBody ${entity} pojo) {
-        this.${controllerMappingHyphen}Service.save(pojo);
+        this.${table.entityPath}Service.save(pojo);
         return ResponseEntity.ok(Result.success());
     }
 
@@ -90,7 +90,7 @@ public class ${table.controllerName} {
     @PatchMapping("v1/update")
     @ApiOperation(value = "根据id修改${table.comment}", notes = "根据id修改${table.comment}")
     public ResponseEntity<Result> update(@Validated @RequestBody ${entity} pojo) {
-        this.${controllerMappingHyphen}Service.updateById(pojo);
+        this.${table.entityPath}Service.updateById(pojo);
         return ResponseEntity.ok(Result.success());
     }
 
@@ -98,7 +98,7 @@ public class ${table.controllerName} {
     @DeleteMapping("v1/delete/{id}")
     @ApiOperation(value = "根据id删除${table.comment}", notes = "根据id删除${table.comment}")
     public ResponseEntity<Result> delete(@PathVariable("id") Long id) {
-        this.${controllerMappingHyphen}Service.removeById(id);
+        this.${table.entityPath}Service.removeById(id);
         return ResponseEntity.ok(Result.success());
     }
 

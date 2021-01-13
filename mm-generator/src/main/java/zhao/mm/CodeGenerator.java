@@ -124,7 +124,7 @@ public class CodeGenerator {
         // 写于父类中的公共字段
         strategy.setSuperEntityColumns("create_time", "update_time");
         strategy.setInclude(tables);
-        strategy.setControllerMappingHyphenStyle(true);
+//        strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(tablePrefix);
         mpg.setStrategy(strategy);
 //        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
