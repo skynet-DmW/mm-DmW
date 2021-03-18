@@ -4,9 +4,9 @@ package ${package.Controller};
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 ## ==============================自定义类=============================
-import com.run.admin.common.pojo.PageQuery;
-import com.run.admin.common.pojo.Result;
-import com.run.admin.common.query.BaseQuery;
+import com.niu.common.pojo.PageQuery;
+import com.niu.common.pojo.Result;
+import com.niu.common.query.BaseQuery;
 ## ==============================自定义类=============================
 import ${package.Entity}.${entity};
 import ${package.Service}.${entity}Service;
@@ -59,7 +59,7 @@ public class ${table.controllerName} {
 #end
 
     @Autowired
-    public ${entity}Service ${table.entityPath}Service;
+    private ${entity}Service ${table.entityPath}Service;
 
 
     @GetMapping("v1/page")
