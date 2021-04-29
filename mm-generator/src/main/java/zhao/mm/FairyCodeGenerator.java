@@ -19,8 +19,8 @@ public class FairyCodeGenerator {
 
 
     private final static String projectPath = "D:\\Projects\\test"; // 项目地址
-    private final static String author = "开发人员"; // 开发人员
-    private final static String parent = "com.test"; // 包名
+    private final static String author = "Albert"; // 开发人员
+    private final static String parent = "org.sky.fairy"; // 包名
     private final static String moduleName = "user"; // 模块名称
     private final static String url = "jdbc:mysql://localhost:3306/qq?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowMultiQueries=true"; // url
     private final static String username = "账号"; // 账号
@@ -102,8 +102,8 @@ public class FairyCodeGenerator {
 
         // 配置模板
         TemplateConfig templateConfig = new TemplateConfig();
-        templateConfig.setController("templates/myController.java");
-        templateConfig.setMapper("templates/myMapper.java");
+        templateConfig.setController("templates/FairyController.java");
+        templateConfig.setMapper("templates/CommonMapper.java");
         // 配置自定义输出模板
         //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
         // templateConfig.setEntity("templates/entity2.java");
