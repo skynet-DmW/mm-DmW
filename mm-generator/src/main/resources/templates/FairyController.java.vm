@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.sky.fairy.common.dto.Result;
 import org.sky.fairy.common.param.BaseQueryParam;
 import org.sky.fairy.common.param.PageParam;
+import org.sky.fairy.config.swagger2.ApiVersion;
+import org.sky.fairy.config.swagger2.VersionConstant;
 ## ==============================自定义类=============================
 import ${package.Entity}.${entity};
 import ${package.Service}.${entity}Service;
@@ -63,6 +65,7 @@ public class ${table.controllerName} {
 
     @GetMapping("v1/page")
     @ApiOperation(value = "${table.comment}分页查询", notes = "${table.comment}分页查询")
+    @ApiVersion(group = VersionConstant.VERSION_100)
     public ResponseEntity<Result<List<${entity}>>> page(PageParam pageParam, BaseQueryParam param) {
         IPage<${entity}> iPage = this.${table.entityPath}Service.page(pageParam, Wrappers.lambdaQuery(new ${entity}())
                 .orderByDesc(${entity}::getUpdateTime));
@@ -72,6 +75,7 @@ public class ${table.controllerName} {
 
     @GetMapping("v1/list")
     @ApiOperation(value = "查询所有${table.comment}", notes = "查询所有${table.comment}")
+    @ApiVersion(group = VersionConstant.VERSION_100)
     public ResponseEntity<Result<List<${entity}>>> list() {
         List<${entity}> list = this.${table.entityPath}Service.list(Wrappers.lambdaQuery(new ${entity}()).orderByDesc(${entity}::getUpdateTime));
         return ResponseEntity.ok(Result.success(list));
@@ -80,6 +84,7 @@ public class ${table.controllerName} {
 
     @PostMapping("v1/save")
     @ApiOperation(value = "保存${table.comment}", notes = "保存${table.comment}")
+    @ApiVersion(group = VersionConstant.VERSION_100)
     public ResponseEntity<Result<?>> save(@Validated @RequestBody ${entity} param) {
         this.${table.entityPath}Service.save(param);
         return ResponseEntity.ok(Result.success());
@@ -88,6 +93,7 @@ public class ${table.controllerName} {
 
     @PatchMapping("v1/update")
     @ApiOperation(value = "根据id修改${table.comment}", notes = "根据id修改${table.comment}")
+    @ApiVersion(group = VersionConstant.VERSION_100)
     public ResponseEntity<Result<?>> update(@Validated @RequestBody ${entity} param) {
         this.${table.entityPath}Service.updateById(param);
         return ResponseEntity.ok(Result.success());
@@ -96,6 +102,7 @@ public class ${table.controllerName} {
 
     @DeleteMapping("v1/delete/{id}")
     @ApiOperation(value = "根据id删除${table.comment}", notes = "根据id删除${table.comment}")
+    @ApiVersion(group = VersionConstant.VERSION_100)
     public ResponseEntity<Result<?>> delete(@PathVariable("id") Long id) {
         this.${table.entityPath}Service.removeById(id);
         return ResponseEntity.ok(Result.success());
