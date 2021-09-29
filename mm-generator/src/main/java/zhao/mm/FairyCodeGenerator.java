@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import org.sky.fairy.common.pojo.BasePojo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -123,6 +124,7 @@ public class FairyCodeGenerator {
         // 公共父类
 //        strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
         // 写于父类中的公共字段
+        strategy.setSuperEntityClass(BasePojo.class);
         strategy.setSuperEntityColumns("create_time", "update_time");
         strategy.setInclude(tables);
 //        strategy.setControllerMappingHyphenStyle(true);

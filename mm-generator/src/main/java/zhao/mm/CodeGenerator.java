@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import org.sky.fairy.common.pojo.BasePojo;
 
 import java.util.ArrayList;
 import java.util.List;

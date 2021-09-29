@@ -1,4 +1,4 @@
-package zhao.mm;
+package org.sky.fairy.common.pojo;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
